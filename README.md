@@ -23,6 +23,10 @@ I recommend using a settings.json file and adding your Chargify subdomain and AP
 You can then set up Chargify like this...
 
 ```JavaScript
+var subdomain = Meteor.settings.private.chargify.subdomain,
+    api_key   = Meteor.settings.private.chargify.api_key,
+    chargify  = Chargify(subdomain, api_key);
+
 chargify.get("/subscriptions.json", function(error, result, data) {
   if (error) {
     console.log(error);
