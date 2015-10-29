@@ -21,6 +21,7 @@ Chargify = function( options ) {
 
 Chargify.prototype.http = function( method, request, callback ) {
   uri = this.protocol + this.host + request;
+
   options = {
     'headers': {
       'accept': 'application/json'

@@ -6,3 +6,28 @@ Using Meteor's packaging system:
 `$ meteor add yankeyhotel:meteor-chargify`
 
 ## Usage
+
+I recommend using a settings.json file and adding your Chargify subdomain and API key there.
+
+```JSON
+{
+  "private": {
+    "chargify": {
+      "subdomain": "...",
+      "api_key": "..."
+    }
+  }
+}
+```
+
+You can then set up Chargify like this...
+
+```JavaScript
+chargify.get("/subscriptions.json", function(error, result, data) {
+  if (error) {
+    console.log(error);
+  } else {
+    console.log(data[0].subscription);
+  }
+});
+```
