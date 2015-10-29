@@ -3,6 +3,6 @@ Easy integration with [Chargify](http://chargify.com) for adding recurring payme
 
 ## Install
 Using Meteor's packaging system:
-  $ meteor add yankeyhotel:meteor-chargify
+`$ meteor add yankeyhotel:meteor-chargify`
 
 ## Usage
