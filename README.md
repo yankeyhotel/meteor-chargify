@@ -3,6 +3,7 @@ Easy integration with [Chargify](http://chargify.com) for adding recurring payme
 
 ## Install
 Using Meteor's packaging system:
+
 `$ meteor add yankeyhotel:meteor-chargify`
 
 ## Usage
@@ -27,11 +28,17 @@ var subdomain = Meteor.settings.private.chargify.subdomain,
     api_key   = Meteor.settings.private.chargify.api_key,
     chargify  = Chargify(subdomain, api_key);
 
-chargify.get("/subscriptions.json", function(error, result, data) {
+// Use a Future
+var Future = Npm.require('fibers/future');
+var chargify_subscriptions = new Future();
+
+chargify.get("/subscriptions", function(error, result, data) {
   if (error) {
-    console.log(error);
+    chargify_subscriptions.return(error);
   } else {
-    console.log(data[0].subscription);
+    chargify_subscriptions.return(data);
   }
 });
+
+chargify_data = chargify_subscriptions.wait();
 ```
