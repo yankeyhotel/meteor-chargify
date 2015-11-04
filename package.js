@@ -8,9 +8,19 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.2.1');
-  api.use('ecmascript');
-  api.use('http');
-  api.addFiles('meteor-chargify.js', 'server');
+
+  // Dependencies
+  api.use(['ecmascript', 'http']);
+
+  // Package Files
+  // Loading on the client only
+
+  // Loading on the server only
+  api.addFiles('lib/controllers/chargify.js', 'server');
+  api.addFiles([
+    'lib/controllers/subscriptions.js',
+    'lib/controllers/customers.js'
+  ], 'server');
   api.export('Chargify', 'server');
 });
 
@@ -18,5 +28,5 @@ Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
   api.use('yankeyhotel:meteor-chargify');
-  api.addFiles('meteor-chargify-tests.js');
+  api.addFiles('tests/chargify-tests.js');
 });
